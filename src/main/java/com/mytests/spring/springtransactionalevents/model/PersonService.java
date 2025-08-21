@@ -1,5 +1,6 @@
 package com.mytests.spring.springtransactionalevents.model;
 
+import com.mytests.spring.springtransactionalevents.events.DataBasePopulatedEvent;
 import com.mytests.spring.springtransactionalevents.events.PersonAddedEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -33,11 +34,10 @@ public class PersonService {
 
     @Transactional
     public void populateDB() {
-        System.out.println("====== DB population  =====");
         repository.save(new Person("Ivan", "Ivanov", 10));
         repository.save(new Person("Petr", "Petrov", 20));
         repository.save(new Person("Pavel", "Pavlov", 30));
-        System.out.println("===================");
+        applicationEventPublisher.publishEvent(new DataBasePopulatedEvent(this, 3, "person", "DB was populated"));
     }
 
 }

@@ -1,0 +1,24 @@
+###add by json
+POST http://localhost:8080/add
+Content-Type: application/json
+
+{
+  "firstName": "Sidor",
+  "lastName": "Sidorov",
+  "age": 40
+}
+
+###add by req params
+POST http://localhost:8080/addByParams?
+    fname="vasya"&
+    lname="vasin"&
+    age=50
+
+###add invalid
+POST http://localhost:8080/addByParams?
+    fname=""&
+    lname=""&
+    age=150
+
+
+###
