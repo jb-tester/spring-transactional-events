@@ -18,8 +18,8 @@ public class GroupService {
     }
 
     @Transactional
-    public Group saveGroup(Group group) {
-        return repository.save(group);
+    public void saveGroup(Group group) {
+        repository.save(group);
     }
 
     @Transactional

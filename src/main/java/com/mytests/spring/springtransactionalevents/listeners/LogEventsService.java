@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LogEventsService {
 
-    @EventListener
+    @EventListener()
     public void logPersonAddedEvent(PersonAddedEvent event) {
         System.out.println("====== PersonAddedEvent: " + event.toString() + " =====");
     }

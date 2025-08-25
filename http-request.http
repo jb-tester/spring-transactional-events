@@ -7,13 +7,13 @@ Content-Type: application/json
   "lastName": "Sidorov",
   "age": 40
 }
-###add to same group
+###add to existing group
 POST http://localhost:8080/add
 Content-Type: application/json
 
 {
   "firstName": "Semen",
-  "lastName": "Sidorov",
+  "lastName": "Ivanov",
   "age": 45
 }
 ###add by req params

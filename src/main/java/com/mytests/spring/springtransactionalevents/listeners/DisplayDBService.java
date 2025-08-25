@@ -22,20 +22,14 @@ public class DisplayDBService {
         this.groupService = groupService;
     }
 
-    @EventListener
-    public void afterPersonAddedEvent(PersonAddedEvent event) {
+    @EventListener(classes = {PersonAddedEvent.class, DataBasePopulatedEvent.class})
+    public void afterPersonAddingEvents() {
         System.out.println("===== resulted Person DB: ====");
         personService.getAll().forEach(System.out::println);
         System.out.println("=======================");
     }
 
-    @EventListener
-    public void afterDataBasePopulatedEvent(DataBasePopulatedEvent event) {
-        System.out.println("===== resulted Person DB: ====");
-        List<String> all = personService.getAll();
-        all.forEach(System.out::println);
-        System.out.println("=======================");
-    }
+
     @EventListener
     public void afterGroupUpdatedEvent(GroupUpdatedEvent event) {
         System.out.println("===== resulted Group DB: ====");

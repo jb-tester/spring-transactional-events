@@ -31,5 +31,12 @@ public class Group {
     public Group() {
     }
 
-
+    @Override
+    public String toString() {
+        return "Group{" +
+               "name='" + name + '\'' +
+               ", description='" + description + '\'' +
+               ", amount='" + amount + '\'' +
+               '}';
+    }
 }
