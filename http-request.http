@@ -7,18 +7,34 @@ Content-Type: application/json
   "lastName": "Sidorov",
   "age": 40
 }
+###add to same group
+POST http://localhost:8080/add
+Content-Type: application/json
 
+{
+  "firstName": "Semen",
+  "lastName": "Sidorov",
+  "age": 45
+}
 ###add by req params
 POST http://localhost:8080/addByParams?
     fname="vasya"&
     lname="vasin"&
     age=50
 
-###add invalid
+###add invalid person
 POST http://localhost:8080/addByParams?
     fname=""&
     lname=""&
     age=150
 
 
-###
+###add person with too short family name
+POST http://localhost:8080/add
+Content-Type: application/json
+
+{
+  "firstName": "Konstantin",
+  "lastName": "K",
+  "age": 60
+}

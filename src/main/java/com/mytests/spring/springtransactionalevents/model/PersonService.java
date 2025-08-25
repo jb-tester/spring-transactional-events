@@ -15,10 +15,12 @@ public class PersonService {
 
     private final PersonRepository repository;
     private final ApplicationEventPublisher applicationEventPublisher;
+    private final GroupService groupService;
 
-    public PersonService(PersonRepository repository, ApplicationEventPublisher applicationEventPublisher) {
+    public PersonService(PersonRepository repository, ApplicationEventPublisher applicationEventPublisher, GroupService groupService) {
         this.repository = repository;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.groupService = groupService;
     }
 
     public List<String> getAll() {
@@ -28,7 +30,7 @@ public class PersonService {
     @Transactional
     public Person savePerson(Person person) {
         Person p = repository.save(person);
-        applicationEventPublisher.publishEvent(new PersonAddedEvent(this, Clock.systemUTC(), p.toString(), p.getId() ));
+        applicationEventPublisher.publishEvent(new PersonAddedEvent(this, Clock.systemUTC(), p.getFirstName(), p.getLastName(), p.getAge(), p.getId() ));
         return person;
     }
 
@@ -37,6 +39,9 @@ public class PersonService {
         repository.save(new Person("Ivan", "Ivanov", 10));
         repository.save(new Person("Petr", "Petrov", 20));
         repository.save(new Person("Pavel", "Pavlov", 30));
+        groupService.saveGroup(new Group("Ivanov", "Ivanovs group", "1"));
+        groupService.saveGroup(new Group("Petrov", "Petrovs group", "1"));
+        groupService.saveGroup(new Group("Pavlov", "Pavlovs group", "1"));
         applicationEventPublisher.publishEvent(new DataBasePopulatedEvent(this, 3, "person", "DB was populated"));
     }
 

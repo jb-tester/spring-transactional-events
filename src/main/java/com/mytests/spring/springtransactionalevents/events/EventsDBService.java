@@ -3,6 +3,8 @@ package com.mytests.spring.springtransactionalevents.events;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -14,10 +16,8 @@ public class EventsDBService {
         this.repository = repository;
     }
 
-    public void displayAll() {
-        System.out.println("====== All PersonEvents: =====");
-        repository.findAll().forEach(System.out::println);
-        System.out.println("===================");
+    public List<String> getAll() {
+        return repository.getAllBy().stream().map(EventsEntity::toString).toList();
     }
 
     public void save(EventsEntity entity) {
